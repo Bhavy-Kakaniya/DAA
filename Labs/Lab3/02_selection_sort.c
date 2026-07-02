@@ -9,25 +9,20 @@ void swap(int *a, int *b)
     *b = temp;
 }
 
-void bubble_sort(int arr[], int size)
+void selection_sort(int arr[], int size)
 {
-    int i, j, swapped;
-
-    for (i = 0; i < size - 1; i++)
+    int minIndex;
+    for (int i = 0; i < size - 1; i++)
     {
-        swapped = 0;
-
-        for (j = 0; j < size - i - 1; j++)
-        {
-            if (arr[j] > arr[j + 1])
-            {
-                swap(&arr[j], &arr[j + 1]);
-                swapped = 1;
+        minIndex = i;
+        for(int j = i + 1; j < size; j++){
+            if(arr[j] > arr[minIndex]) {
+                minIndex = j;
             }
         }
-
-        if (!swapped)
-            break;
+        if(minIndex != i){
+            swap(&arr[i], &arr[minIndex]);
+        }
     }
 }
 
@@ -84,7 +79,7 @@ double calculate_time(char filename[], int size)
     clock_t start, end;
 
     start = clock();
-    bubble_sort(arr, size);
+    selection_sort(arr, size);
     end = clock();
 
     return (double)(end - start) / CLOCKS_PER_SEC;
@@ -97,7 +92,7 @@ void main()
 
     int size_of_file_array[] = {1000, 10000, 100000};
 
-    printf("\n---Bubble Sort---\n");
+    printf("\n---Selection Sort---\n");
     for (int i = 0; i < 3; i++)
     {
         printf("\n Array size = %d", size_of_file_array[i]);
