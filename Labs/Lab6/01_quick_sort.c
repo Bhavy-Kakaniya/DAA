@@ -35,7 +35,7 @@ void quicksort(int a[], int low, int high)
     }
 }
 
-int main()
+void main()
 {
     int a[20], n, i;
 
